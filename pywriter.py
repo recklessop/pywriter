@@ -31,11 +31,11 @@ def sql_connect():
 
 def run_writer(times):
     global sqlconn
-    
+
     print("Inserting records ...")
 
     x = 0
-    while (x < times):
+    while (x < int(times)):
         age = random.randint(1,101)
         name = rand_name()
         city = rand_name()
@@ -64,9 +64,6 @@ sql_connect()
 
 var = 1
 while var == 1 :
-
-
-
     start = time.time()
     run_writer(iterations)
     end = time.time()
