@@ -9,7 +9,6 @@ sql_user = os.environ.get('DBUSER')
 sql_pass = os.environ.get('DBPASS')
 
 def sql_conncet():
-    global sqlconn
     sqlconn = self.db = pyodbc.connect('driver={SQL Server};server=%s;database=%s;uid=%s;pwd=%s' %
         ( sql_server, sql_db, sql_user, sql_pass ) )
 
@@ -36,7 +35,7 @@ print("DB Database: ", sql_db)
 print("DB User: ", sql_user)
 print("DB Password: ", sql_pass)
 
-
+global sqlconn
 
 var = 1
 while var == 1 :
