@@ -9,11 +9,14 @@ sql_user = os.environ.get('DBUSER')
 sql_pass = os.environ.get('DBPASS')
 
 def sql_conncet():
+    global sqlconn
     sqlconn = self.db = pyodbc.connect('driver={SQL Server};server=%s;database=%s;uid=%s;pwd=%s' %
         ( sql_server, sql_db, sql_user, sql_pass ) )
 
 def run_writer():
     print("Function Running...")
+
+    global sqlconn
 
     cursor = sqlconn.cursor()
     cursor.execute('SELECT * FROM TestDB.dbo.Person')
@@ -37,9 +40,11 @@ print("DB Password: ", sql_pass)
 
 global sqlconn
 
+sql_connect()
+
 var = 1
 while var == 1 :
     start = time.time()
-    run_writer(sqlconn)
+    run_writer()
     end = time.time()
     print("Function took: ", (end -start))
