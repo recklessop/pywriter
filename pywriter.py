@@ -31,7 +31,7 @@ def sql_connect():
         ( sql_server, sql_db, sql_user, sql_pass ) )
 
 def run_writer(name, age, city):
-    print("Inserting - Name: {}" % (name))
+    print("Inserting record ...")
 
     global sqlconn
 
