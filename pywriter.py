@@ -52,7 +52,7 @@ def run_writer(times, junksize):
         x = x + 1
 
 
-junksize = (int(junksize) * 8)
+junksize = (int(junksize) * 1000000 * 8)
 print("Environment Info")
 
 print("DB Server: ", sql_server)
