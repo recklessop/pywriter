@@ -33,7 +33,7 @@ print("Environment Info")
 
 print("DB Server: ", sql_server)
 print("DB Database: ", sql_db)
-print("DB User: ", sql_dbuser)
+print("DB User: ", sql_user)
 print("DB Password: ", sql_dbpass)
 
 
