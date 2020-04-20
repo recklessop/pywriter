@@ -68,6 +68,6 @@ sql_connect()
 var = 1
 while var == 1 :
     start = time.time()
-    run_writer(iterations)
+    run_writer(iterations, junksize)
     end = time.time()
     print("Function took: ", (end - start))
