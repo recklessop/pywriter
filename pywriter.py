@@ -10,8 +10,9 @@ sql_pass = os.environ.get('DBPASS')
 
 def sql_connect():
     global sqlconn
-    sqlconn = self.db = pyodbc.connect('driver={MSSQLServerDatabase};server=%s;database=%s;uid=%s;pwd=%s' %
-        ( sql_server, sql_db, sql_user, sql_pass ) )
+    print("Connecting to SQL...")
+    #sqlconn = self.db = pyodbc.connect('driver={MSSQLServerDatabase};server=%s;database=%s;uid=%s;pwd=%s' %
+    #    ( sql_server, sql_db, sql_user, sql_pass ) )
 
 def run_writer():
     print("Function Running...")
