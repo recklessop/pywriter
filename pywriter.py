@@ -47,11 +47,7 @@ def run_writer(name, age, city):
 
     print(results)
 
-    cursor.execute('''
-                INSERT INTO TestDB.dbo.Person (Name, Age, City)
-                VALUES
-                (%s,%s,%s)
-                ''') % (name, str(age), city)
+    cursor.execute(('INSERT INTO TestDB.dbo.Person (Name, Age, City) VALUES (%s,%s,%s)') % (name, str(age), city))
     sqlconn.commit()
 
 
