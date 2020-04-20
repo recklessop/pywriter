@@ -19,16 +19,16 @@ def run_writer():
 
     global sqlconn
 
-    cursor = sqlconn.cursor()
-    cursor.execute('SELECT * FROM TestDB.dbo.Person')
+    #cursor = sqlconn.cursor()
+    #cursor.execute('SELECT * FROM TestDB.dbo.Person')
 
-    cursor.execute('''
-                INSERT INTO TestDB.dbo.Person (Name, Age, City)
-                VALUES
-                ('Bob',55,'Montreal'),
-                ('Jenny',66,'Boston')
-                ''')
-    sqlconn.commit()
+    #cursor.execute('''
+    #            INSERT INTO TestDB.dbo.Person (Name, Age, City)
+    #            VALUES
+    #            ('Bob',55,'Montreal'),
+    #            ('Jenny',66,'Boston')
+    #            ''')
+    #sqlconn.commit()
 
 
 
