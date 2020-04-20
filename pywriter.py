@@ -4,6 +4,7 @@ import time
 import pyodbc
 import random
 import urllib.request
+import string
 
 sql_server = os.environ.get('DBSERVER')
 sql_db = os.environ.get('DBDATABASE')
@@ -38,7 +39,7 @@ def run_writer(times, junksize):
     global sqlconn
 
     print("Inserting records ...")
-    
+
     junk = randomString(junksize)
     x = 0
     while (x < int(times)):
