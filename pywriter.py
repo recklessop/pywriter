@@ -17,11 +17,11 @@ words = long_txt.splitlines()
 
 upper_words = [word for word in words if word[0].isupper()]
 name_words  = [word for word in upper_words if not word.isupper()]
-one_name = ' '.join([name_words[random.randint(0, len(name_words))] for i in range(2)])
+one_name = ' '.join([name_words[random.randint(0, (len(name_words) - 1))] for i in range(2)])
 
 
 def rand_name():
-   name = ' '.join([name_words[random.randint(0, len(name_words))] for i in range(2)])
+   name = ' '.join([name_words[random.randint(0, (len(name_words) - 1))] for i in range(2)])
    return name
 
 def sql_connect():
