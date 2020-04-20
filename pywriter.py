@@ -46,7 +46,7 @@ def run_writer(times, junksize):
 
         cursor = sqlconn.cursor()
 
-        cursor.execute("INSERT INTO TestDB.dbo.Person (Name, Age, City, Junk) VALUES (?, ?, ?, ?)", (name, str(age), city, junk) )
+        cursor.execute("INSERT INTO TestDB.dbo.Person (Name, Age, City, Junk) VALUES (?, ?, ?, ?)", (name, str(age), city, str(junk)) )
 
         sqlconn.commit()
         x = x + 1
