@@ -11,16 +11,16 @@ sql_pass = os.environ.get('DBPASS')
 def sql_connect():
     global sqlconn
     print("Connecting to SQL...")
-    #sqlconn = self.db = pyodbc.connect('driver={ODBC Driver 17 for SQL Server};server=%s;database=%s;uid=%s;pwd=%s' %
-    #    ( sql_server, sql_db, sql_user, sql_pass ) )
+    sqlconn = self.db = pyodbc.connect('driver={ODBC Driver 17 for SQL Server};server=%s;database=%s;uid=%s;pwd=%s' %
+        ( sql_server, sql_db, sql_user, sql_pass ) )
 
 def run_writer():
     print("Function Running...")
 
     global sqlconn
 
-    #cursor = sqlconn.cursor()
-    #cursor.execute('SELECT * FROM TestDB.dbo.Person')
+    cursor = sqlconn.cursor()
+    cursor.execute('SELECT * FROM TestDB.dbo.Person')
 
     #cursor.execute('''
     #            INSERT INTO TestDB.dbo.Person (Name, Age, City)
@@ -28,7 +28,7 @@ def run_writer():
     #            ('Bob',55,'Montreal'),
     #            ('Jenny',66,'Boston')
     #            ''')
-    #sqlconn.commit()
+    sqlconn.commit()
 
 
 
