@@ -39,12 +39,13 @@ def run_writer(times):
         age = random.randint(1,101)
         name = rand_name()
         city = rand_name()
+        junk = random.getrandbits(256)
 
         global sqlconn
 
         cursor = sqlconn.cursor()
 
-        cursor.execute("INSERT INTO TestDB.dbo.Person (Name, Age, City) VALUES (?, ?, ?)", (name, str(age), city) )
+        cursor.execute("INSERT INTO TestDB.dbo.Person (Name, Age, City, Junk) VALUES (?, ?, ?, ?)", (name, str(age), city, junk) )
 
         sqlconn.commit()
         x = x + 1
