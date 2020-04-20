@@ -31,7 +31,7 @@ def sql_connect():
         ( sql_server, sql_db, sql_user, sql_pass ) )
 
 def run_writer(name, age, city):
-    print("Inserting Name: %s, Age: %s, City: %s") % (name, str(age), city)
+    print("Inserting - Name: {}, Age: {}, City: {}") % (name, str(age), city)
 
     global sqlconn
 
@@ -74,4 +74,4 @@ while var == 1 :
     start = time.time()
     run_writer(name, age, city)
     end = time.time()
-    print("Function took: ", (end -start))
+    print("Function took: ", (end - start))
