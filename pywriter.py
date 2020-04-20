@@ -9,6 +9,7 @@ sql_server = os.environ.get('DBSERVER')
 sql_db = os.environ.get('DBDATABASE')
 sql_user = os.environ.get('DBUSER')
 sql_pass = os.environ.get('DBPASS')
+iterations = os.environ.get('ITERATIONS')
 
 word_url = "http://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-type=text/plain"
 response = urllib.request.urlopen(word_url)
@@ -28,26 +29,25 @@ def sql_connect():
     sqlconn = pyodbc.connect('driver={ODBC Driver 17 for SQL Server};server=%s;database=%s;uid=%s;pwd=%s' %
         ( sql_server, sql_db, sql_user, sql_pass ) )
 
-def run_writer(name, age, city):
-    print("Inserting record ...")
-
+def run_writer(times):
     global sqlconn
+    
+    print("Inserting records ...")
 
-    cursor = sqlconn.cursor()
-    #cursor.execute('SELECT * FROM TestDB.dbo.Person')
-    #columns = [column[0] for column in cursor.description]
-    #print(columns)
+    x = 0
+    while (x < times):
+        age = random.randint(1,101)
+        name = rand_name()
+        city = rand_name()
 
+        global sqlconn
 
-    #results = []
-    #for row in cursor.fetchall():
-    #    results.append(dict(zip(columns, row)))
+        cursor = sqlconn.cursor()
 
-    #print(results)
+        cursor.execute("INSERT INTO TestDB.dbo.Person (Name, Age, City) VALUES (?, ?, ?)", (name, str(age), city) )
 
-    cursor.execute("INSERT INTO TestDB.dbo.Person (Name, Age, City) VALUES (?, ?, ?)", (name, str(age), city) )
-
-    sqlconn.commit()
+        sqlconn.commit()
+        x = x + 1
 
 
 
@@ -65,11 +65,9 @@ sql_connect()
 var = 1
 while var == 1 :
 
-    age = random.randint(1,101)
-    name = rand_name()
-    city = rand_name()
+
 
     start = time.time()
-    run_writer(name, age, city)
+    run_writer(iterations)
     end = time.time()
     print("Function took: ", (end - start))
