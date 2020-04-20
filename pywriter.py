@@ -33,7 +33,7 @@ def run_writer(name, age, city):
 
     global sqlconn
 
-    #cursor = sqlconn.cursor()
+    cursor = sqlconn.cursor()
     #cursor.execute('SELECT * FROM TestDB.dbo.Person')
     #columns = [column[0] for column in cursor.description]
     #print(columns)
