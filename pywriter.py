@@ -40,7 +40,7 @@ def run_writer(times, junksize):
         age = random.randint(1,101)
         name = rand_name()
         city = rand_name()
-        junk = random.getrandbits(junksize)
+        junk = random.getrandbits(int(junksize))
 
         global sqlconn
 
