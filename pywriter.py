@@ -10,6 +10,7 @@ sql_db = os.environ.get('DBDATABASE')
 sql_user = os.environ.get('DBUSER')
 sql_pass = os.environ.get('DBPASS')
 iterations = os.environ.get('ITERATIONS')
+junksize = os.environ.get('JUNKSIZE')
 
 word_url = "http://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-type=text/plain"
 response = urllib.request.urlopen(word_url)
@@ -29,7 +30,7 @@ def sql_connect():
     sqlconn = pyodbc.connect('driver={ODBC Driver 17 for SQL Server};server=%s;database=%s;uid=%s;pwd=%s' %
         ( sql_server, sql_db, sql_user, sql_pass ) )
 
-def run_writer(times):
+def run_writer(times, junksize):
     global sqlconn
 
     print("Inserting records ...")
@@ -39,7 +40,7 @@ def run_writer(times):
         age = random.randint(1,101)
         name = rand_name()
         city = rand_name()
-        junk = random.getrandbits(256)
+        junk = random.getrandbits(junksize)
 
         global sqlconn
 
