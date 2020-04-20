@@ -57,6 +57,7 @@ print("DB Server: ", sql_server)
 print("DB Database: ", sql_db)
 print("DB User: ", sql_user)
 print("DB Password: ", sql_pass)
+print("Iterations per loop: ", iterations)
 
 global sqlconn
 
