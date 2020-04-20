@@ -34,7 +34,8 @@ def run_writer(times, junksize):
     global sqlconn
 
     print("Inserting records ...")
-
+    junksize = (int(junksize) * 1000 * 8)
+    print("Junksize in bytes {}", junksize)
     x = 0
     while (x < int(times)):
         age = random.randint(1,101)
@@ -52,7 +53,7 @@ def run_writer(times, junksize):
         x = x + 1
 
 
-junksize = (int(junksize) * 1000000 * 8)
+
 print("Environment Info")
 
 print("DB Server: ", sql_server)
@@ -60,7 +61,7 @@ print("DB Database: ", sql_db)
 print("DB User: ", sql_user)
 print("DB Password: ", sql_pass)
 print("Iterations per loop: ", iterations)
-print("Junksize (MegaBytes): ", int(junksize))
+print("Junksize (KiloBytes): ", int(junksize))
 
 global sqlconn
 
