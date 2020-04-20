@@ -60,6 +60,7 @@ print("DB Database: ", sql_db)
 print("DB User: ", sql_user)
 print("DB Password: ", sql_pass)
 print("Iterations per loop: ", iterations)
+print("Junksize: ", junksize)
 
 global sqlconn
 
