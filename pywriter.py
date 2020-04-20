@@ -30,13 +30,16 @@ def sql_connect():
     sqlconn = pyodbc.connect('driver={ODBC Driver 17 for SQL Server};server=%s;database=%s;uid=%s;pwd=%s' %
         ( sql_server, sql_db, sql_user, sql_pass ) )
 
+def randomString(stringLength=junksize):
+    letters = string.ascii_lowercase
+    return ''.join(random.choice(letters) for i in range(stringLength))
+
 def run_writer(times, junksize):
     global sqlconn
 
     print("Inserting records ...")
-    junksize = (int(junksize) * 1000 * 8)
-    print("Junksize in bytes ", junksize)
-    junk = random.getrandbits(int(junksize))
+    
+    junk = randomString(junksize)
     x = 0
     while (x < int(times)):
         age = random.randint(1,101)
