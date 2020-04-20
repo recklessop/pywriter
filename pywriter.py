@@ -36,13 +36,13 @@ def run_writer(times, junksize):
     print("Inserting records ...")
     junksize = (int(junksize) * 1000 * 8)
     print("Junksize in bytes ", junksize)
+    junk = random.getrandbits(int(junksize))
     x = 0
     while (x < int(times)):
         age = random.randint(1,101)
         name = rand_name()
         city = rand_name()
-        junk = random.getrandbits(int(junksize))
-
+        
         global sqlconn
 
         cursor = sqlconn.cursor()
