@@ -52,7 +52,7 @@ def run_writer(times, junksize):
         x = x + 1
 
 
-
+junksize = (junksize * 8)
 print("Environment Info")
 
 print("DB Server: ", sql_server)
@@ -60,7 +60,7 @@ print("DB Database: ", sql_db)
 print("DB User: ", sql_user)
 print("DB Password: ", sql_pass)
 print("Iterations per loop: ", iterations)
-print("Junksize: ", junksize)
+print("Junksize (Bytes): ", junksize)
 
 global sqlconn
 
