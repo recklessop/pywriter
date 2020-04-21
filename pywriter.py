@@ -102,4 +102,4 @@ while var == 1 :
         }
     }]
     print(json_body)
-    influxclient.write_points(json_body, database='sqldata', time_precision='ms', batch_size=10000, protocol='json')
+    influxclient.write_points(json_body, database='sqldata', batch_size=10000, protocol='json')
