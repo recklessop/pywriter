@@ -97,7 +97,6 @@ while var == 1 :
         "tags": {
             "writer": hostname
         },
-        "time": start,
         "fields": {
             "duration": elapsed
         }
