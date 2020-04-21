@@ -95,11 +95,11 @@ while var == 1 :
     {
         "measurement": "writelatency",
         "tags": {
-            "writer": "{hostname}"
+            "writer": hostname
         },
-        "time": "{start}",
+        "time": start,
         "fields": {
-            "duration": {elapsed}
+            "duration": elapsed
         }
     }]
     print(json_body)
