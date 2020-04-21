@@ -97,9 +97,10 @@ while var == 1 :
         "tags": {
             "writer": hostname
         },
+        "time": int(time.time() * 1000),
         "fields": {
             "duration": elapsed
         }
     }]
     print(json_body)
-    influxclient.write_points(json_body, database='sqldata', time_precision='s', batch_size=10000, protocol='json')
+    influxclient.write_points(json_body, database='sqldata', time_precision='ms', batch_size=10000, protocol='json')
