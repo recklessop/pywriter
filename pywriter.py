@@ -89,7 +89,7 @@ while var == 1 :
     run_writer(iterations, int(junksize))
     end = time.time()
     elapsed = (end - start)
-    print("Function took: ", (end - start))
+    print("Function took: ", elapsed)
 
     json_body = [
     {
@@ -102,4 +102,4 @@ while var == 1 :
         }
     }]
     print(json_body)
-    influxclient.write_points(json_body, database='sqldata', batch_size=10000, protocol='json')
+    influxclient.write_points(json_body, database='sqldata', time_precision='s', batch_size=10000, protocol='json')
