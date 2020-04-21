@@ -103,8 +103,6 @@ print("Junksize (KiloBytes): ", int(junksize))
 global sqlconn
 global influxclient
 json_body = []
-global json_body
-
 
 sql_connect()
 influx_connect()
