@@ -30,8 +30,14 @@ def rand_name():
 def influx_connect():
     global influxclient
     print("Connecting to InfluxDB...")
-    influxclient = InfluxDBClient(host='influxdb', port=8086)
-    influxclient.switch_database('sqldata')
+    try:
+        influxclient = InfluxDBClient(host='influxdb', port=8086, database='sqldata')
+    
+    except:
+        print("Unable to connect to InfluxDB")
+        return
+    
+    influxclient.create_database("sqldata")
 
 
 def sql_connect():
@@ -97,10 +103,10 @@ while var == 1 :
         "tags": {
             "writer": hostname
         },
-        "time": int(time.time() * 1000),
+        "time": time.time_ns(),
         "fields": {
             "duration": elapsed
         }
     }]
     print(json_body)
-    influxclient.write_points(json_body, database='sqldata', time_precision='ms', batch_size=10000, protocol='json')
+    influxclient.write_points(json_body, database='sqldata', time_precision='n', batch_size=10000, protocol='json')
