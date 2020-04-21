@@ -13,6 +13,7 @@ sql_user = os.environ.get('DBUSER')
 sql_pass = os.environ.get('DBPASS')
 iterations = os.environ.get('ITERATIONS')
 junksize = os.environ.get('JUNKSIZE')
+global hostname
 hostname = os.environ.get('HOSTNAME')
 
 word_url = "http://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-type=text/plain"
@@ -52,6 +53,8 @@ def randomString(stringLength=junksize):
 
 def run_writer(times, junksize):
     global sqlconn
+    global json_body
+    global hostname
 
     print("Inserting records ...")
 
@@ -61,14 +64,29 @@ def run_writer(times, junksize):
         age = random.randint(1,101)
         name = rand_name()
         city = rand_name()
-        
-        global sqlconn
+
+        start = time.time()
 
         cursor = sqlconn.cursor()
-
         cursor.execute("INSERT INTO TestDB.dbo.Person (Name, Age, City, Junk) VALUES (?, ?, ?, ?)", (name, str(age), city, str(junk)) )
-
         sqlconn.commit()
+
+        end = time.time()
+        elapsed = (end - start)
+
+        result = { 
+            "measurement": "writelatency",
+            "tags": { 
+                "writer": hostname 
+                },
+            "time": time.time_ns(),
+            "fields": { 
+                "duration": elapsed 
+                }
+            }
+
+        json_body.append(result)
+
         x = x + 1
 
 
@@ -84,29 +102,16 @@ print("Junksize (KiloBytes): ", int(junksize))
 
 global sqlconn
 global influxclient
+global json_body
 
 sql_connect()
 influx_connect()
 
 var = 1
 while var == 1 :
-    data = []
-    start = time.time()
-    run_writer(iterations, int(junksize))
-    end = time.time()
-    elapsed = (end - start)
-    print("Function took: ", elapsed)
 
-    json_body = [
-    {
-        "measurement": "writelatency",
-        "tags": {
-            "writer": hostname
-        },
-        "time": time.time_ns(),
-        "fields": {
-            "duration": elapsed
-        }
-    }]
-    print(json_body)
+    json_body.clear()
+
+    run_writer(iterations, int(junksize))
+
     influxclient.write_points(json_body, database='sqldata', time_precision='n', batch_size=10000, protocol='json')
