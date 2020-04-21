@@ -28,7 +28,7 @@ def rand_name():
    return name
 
 def influx_connect():
-    global influxconn
+    global influxclient
     print("Connecting to InfluxDB...")
     influxclient = InfluxDBClient(host='influxdb', port=8086)
     influxclient.switch_database('sqldata')
@@ -77,7 +77,7 @@ print("Iterations per loop: ", iterations)
 print("Junksize (KiloBytes): ", int(junksize))
 
 global sqlconn
-global influxconn
+global influxclient
 
 sql_connect()
 influx_connect()
@@ -102,4 +102,5 @@ while var == 1 :
             "duration": {elapsed}
         }
     }]
+    print(json_body)
     influxclient.write_points(json_body, database='sqldata', time_precision='ms', batch_size=10000, protocol='json')
