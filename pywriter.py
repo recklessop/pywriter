@@ -48,7 +48,7 @@ def sql_connect():
         ( sql_server, sql_db, sql_user, sql_pass ) )
 
 def randomString(stringLength=junksize):
-    letters = string.ascii_lowercase
+    letters = string.ascii_letters + string.digits
     return ''.join(random.choice(letters) for i in range(stringLength))
 
 def run_writer(times, junksize):
